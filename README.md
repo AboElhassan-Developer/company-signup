@@ -58,10 +58,8 @@ Update appsettings.json
 Apply migrations
 Run API
 API will run at https://localhost:7053
+
 3️⃣ Frontend Setup
 npm install
 ng serve
 Frontend will run at http://localhost:4200
-
-نسخ
-تحرير
