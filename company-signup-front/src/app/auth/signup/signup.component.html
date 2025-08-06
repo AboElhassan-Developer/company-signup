@@ -1,0 +1,64 @@
+<h2 class="text-center mb-4">Sign Up as a Company</h2>
+
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="container w-50 border p-4 rounded shadow">
+  <div class="mb-3">
+    <input formControlName="arabicName" class="form-control" placeholder="Company Arabic Name" />
+    <div class="text-danger" *ngIf="f['arabicName'].touched && f['arabicName'].invalid">
+      Arabic name is required and max 100 characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input formControlName="englishName" class="form-control" placeholder="Company English Name" />
+    <div class="text-danger" *ngIf="f['englishName'].touched && f['englishName'].invalid">
+      English name is required and max 100 characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input formControlName="email" type="email" class="form-control" placeholder="Email Address" />
+    <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+      Valid email is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input formControlName="phoneNumber" class="form-control" placeholder="Phone Number (Optional)" />
+    <div class="text-danger" *ngIf="f['phoneNumber'].touched && f['phoneNumber'].errors?.['invalidPhone']
+">
+      Must be a valid Egyptian phone number.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input formControlName="websiteUrl" class="form-control" placeholder="Website URL" />
+   <div class="text-danger" *ngIf="f['websiteUrl'].touched && f['websiteUrl'].errors?.['invalidUrl']">
+  Website must start with http:// or https://
+</div>
+
+  </div>
+
+  <div class="mb-3 text-center">
+  <label for="logoInput" class="btn btn-outline-primary">
+    <i class="bi bi-upload me-2"></i> Upload Company Logo
+  </label>
+  <input
+    type="file"
+    id="logoInput"
+    class="d-none"
+    (change)="onLogoSelected($event)"
+    accept=".jpg,.jpeg,.png,.gif"
+  />
+
+  <div class="mt-2" *ngIf="logoPreview">
+    <img [src]="logoPreview" width="100" height="100" class="img-thumbnail" />
+  </div>
+</div>
+
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-success" [disabled]="!signUpForm.valid">
+      Sign Up
+    </button>
+  </div>
+</form>
